@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "598366944129",
+    "project_id": "forallshop-1c172",
+    "storage_bucket": "forallshop-1c172.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:598366944129:android:a52283687c683bf7310680",
+        "android_client_info": {
+          "package_name": "com.example.fshop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "598366944129-n57nj3jpdhfdlfqfsjf9hktda0bgqn4h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjxWKeagZNjkglAIYuUfwufLkp7GyCQgA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "598366944129-n57nj3jpdhfdlfqfsjf9hktda0bgqn4h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

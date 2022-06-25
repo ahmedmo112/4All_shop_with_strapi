@@ -8,7 +8,8 @@ class TextUtils extends StatelessWidget {
       required this.fontsize,
       required this.fontWeight,
       this.color = Colors.white,
-      this.textDecoration = TextDecoration.none
+      this.textDecoration = TextDecoration.none, 
+      this.textAlign =TextAlign.left
       })
       : super(key: key);
 
@@ -17,10 +18,12 @@ class TextUtils extends StatelessWidget {
   final FontWeight fontWeight;
   final Color color;
   final TextDecoration textDecoration;
+  final TextAlign textAlign;
 
   @override
   Widget build(BuildContext context) {
     return Text(text,
+    textAlign: textAlign,
         style: GoogleFonts.lato(
           textStyle: TextStyle(
             decoration:textDecoration,
