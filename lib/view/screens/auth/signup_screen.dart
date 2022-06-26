@@ -140,11 +140,17 @@ class SignUpScreen extends StatelessWidget {
                                 return AuthButton(
                                     text: 'SIGN UP',
                                     onPressed: () {
-                                      if (formKey.currentState!.validate()) {
-                                        controller.createAccount(
-                                            "".trim(),
-                                            emailController.text.trim(),
-                                            passwordController.text.trim());
+                                      if (controller.isChacked) {
+                                        if (formKey.currentState!.validate()) {
+                                          controller.createAccount(
+                                              "".trim(),
+                                              emailController.text.trim(),
+                                              passwordController.text);
+                                        }
+
+                                      }
+                                      else{
+                                        Get.snackbar("Check Box", "Please Accepte The Terms & Conditions");
                                       }
                                     });
                               }

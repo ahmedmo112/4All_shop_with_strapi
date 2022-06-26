@@ -1,11 +1,17 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fshop/routes/routes.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthController extends GetxController {
   bool isVisable = false;
   bool isChacked = false;
 
+  String? displayUserName;
+  var userImage;
+
   FirebaseAuth auth = FirebaseAuth.instance;
+  var googleSignIn = GoogleSignIn();
 
   void visibilty() {
     isVisable = !isVisable;
@@ -18,13 +24,19 @@ class AuthController extends GetxController {
     update();
   }
 
-  void createAccount(String name,String email, String password) async {
+  void createAccount(String name, String email, String password) async {
     try {
-      await auth.createUserWithEmailAndPassword(
+      await auth
+          .createUserWithEmailAndPassword(
         email: email,
         password: password,
-      );
+      )
+          .then((value) {
+        displayUserName = name;
+        auth.currentUser!.updateDisplayName(displayUserName);
+      });
       update();
+      Get.offNamed(Routes.mainScreen);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         Get.snackbar("Error", "The password provided is too weak.");
@@ -38,8 +50,13 @@ class AuthController extends GetxController {
 
   void login(String email, String password) async {
     try {
-      await auth.signInWithEmailAndPassword(email: email, password: password);
+      await auth
+          .signInWithEmailAndPassword(email: email, password: password)
+          .then((value) {
+        displayUserName = auth.currentUser!.displayName;
+      });
       update();
+      Get.offNamed(Routes.mainScreen);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         Get.snackbar("Error", "No user found for that email.");
@@ -53,9 +70,34 @@ class AuthController extends GetxController {
     await auth.signOut();
   }
 
-  void googleSignUp() {}
+  void googleSignUp() async {
+    await googleSignIn.signIn().then((value) {
+      displayUserName = value!.displayName;
+      userImage = value.photoUrl;
+
+      update();
+
+      Get.offNamed(Routes.mainScreen);
+    }).catchError((e) {
+      Get.snackbar("Error", e.toString());
+    });
+  }
 
   void facebookSiginUp() {}
 
-  void resetPassword() {}
+  void resetPassword(String email) async {
+    try {
+      await auth.sendPasswordResetEmail(email: email);
+      update();
+      Get.back();
+      Get.snackbar(
+          "Reset Password", "Please check your Email to reset your password..");
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        Get.snackbar("Error", "No user found for that email.");
+      } else {
+        Get.snackbar("Error", "There is something wrong.. ");
+      }
+    }
+  }
 }

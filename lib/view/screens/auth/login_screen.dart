@@ -120,7 +120,7 @@ class LoginScreen extends StatelessWidget {
                                     onPressed: () {
                                       if (formKey.currentState!.validate()) {
                                         controller.login(emailController.text.trim(),
-                                            passwordController.text.trim());
+                                            passwordController.text);
                                       }
                                     });
                               }
@@ -132,22 +132,28 @@ class LoginScreen extends StatelessWidget {
                                 fontWeight: FontWeight.normal,
                                 color: Colors.black),
                             const SizedBox(height: 20),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                InkWell(
-                                  onTap: () {},
-                                  child:
-                                      Image.asset("assets/images/google.png"),
-                                ),
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                InkWell(
-                                    onTap: () {},
-                                    child: Image.asset(
-                                        "assets/images/facebook.png")),
-                              ],
+                            GetBuilder<AuthController>(
+                              builder: (context) {
+                                return Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    InkWell(
+                                      onTap: () {
+                                        controller.googleSignUp();
+                                      },
+                                      child:
+                                          Image.asset("assets/images/google.png"),
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    InkWell(
+                                        onTap: () {},
+                                        child: Image.asset(
+                                            "assets/images/facebook.png")),
+                                  ],
+                                );
+                              }
                             )
                           ],
                         ),
