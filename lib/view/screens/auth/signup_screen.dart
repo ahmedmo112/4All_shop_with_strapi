@@ -24,9 +24,9 @@ class SignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  SafeArea(
+    return SafeArea(
       child: Scaffold(
-         backgroundColor:  Colors.white,
+          backgroundColor: Colors.white,
           appBar: AppBar(
             backgroundColor: Colors.white,
             elevation: 0,
@@ -37,7 +37,6 @@ class SignUpScreen extends StatelessWidget {
                 flex: 5,
                 child: Container(
                   width: double.infinity,
-                  
                   child: Padding(
                     padding:
                         const EdgeInsets.only(top: 40, right: 25, left: 25),
@@ -57,11 +56,10 @@ class SignUpScreen extends StatelessWidget {
                                   width: 4,
                                 ),
                                 TextUtils(
-                                  text: 'UP',
-                                  fontsize: 28,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.black
-                                ),
+                                    text: 'UP',
+                                    fontsize: 28,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.black),
                               ],
                             ),
                             const SizedBox(height: 50),
@@ -69,73 +67,88 @@ class SignUpScreen extends StatelessWidget {
                                 controller: nameController,
                                 hint: 'user name',
                                 validator: (value) {
-                                  if(value.toString().length <=2 || !RegExp(validationName).hasMatch(value!)|| value.isEmpty ){
+                                  if (value.toString().length <= 2 ||
+                                      !RegExp(validationName)
+                                          .hasMatch(value!) ||
+                                      value.isEmpty) {
                                     return 'Please Enter Valid Name';
                                   }
                                 },
-                                prefix: const Icon(Icons.person, color: mainColor)),
+                                prefix:
+                                    const Icon(Icons.person, color: mainColor)),
                             const SizedBox(height: 20),
                             AuthTextFormField(
                                 controller: emailController,
                                 hint: 'email',
                                 validator: (value) {
-                                   if(!RegExp(validationEmail).hasMatch(value!) || value.isEmpty ){
+                                  if (!RegExp(validationEmail)
+                                          .hasMatch(value!) ||
+                                      value.isEmpty) {
                                     return 'Please Enter Valid Email';
                                   }
                                 },
-                                prefix: const Icon(Icons.email, color: mainColor)),
+                                prefix:
+                                    const Icon(Icons.email, color: mainColor)),
                             const SizedBox(height: 20),
-                            GetBuilder<AuthController>(
-                              builder: (context) {
-                                return AuthTextFormField(
-                                    controller: passwordController,
-                                    hint: 'password',
-                                    validator: (value) {
-                                      if(value.toString().length <=8  || value!.isEmpty ){
-                                        return 'The Password length must be 8 or more';
-                                      }
-                                      
+                            GetBuilder<AuthController>(builder: (context) {
+                              return AuthTextFormField(
+                                  controller: passwordController,
+                                  hint: 'password',
+                                  validator: (value) {
+                                    if (value.toString().length <= 8 ||
+                                        value!.isEmpty) {
+                                      return 'The Password length must be 8 or more';
+                                    }
+                                  },
+                                  isPassword: !controller.isVisable,
+                                  suffix: IconButton(
+                                    onPressed: () {
+                                      controller.visibilty();
                                     },
-                                    isPassword: !controller.isVisable,
-                                    suffix: IconButton(
-                                       onPressed: (){
-                                        controller.visibilty();
-                                       },
-                                       icon: controller.isVisable? const Icon(Icons.visibility_off_outlined,color: Colors.grey,) : const Icon(Icons.visibility_outlined,color: Colors.grey) ,
-                                       ),
-                                    prefix: const Icon(Icons.key, color: mainColor));
-                              }
-                            ),
+                                    icon: controller.isVisable
+                                        ? const Icon(
+                                            Icons.visibility_off_outlined,
+                                            color: Colors.grey,
+                                          )
+                                        : const Icon(Icons.visibility_outlined,
+                                            color: Colors.grey),
+                                  ),
+                                  prefix:
+                                      const Icon(Icons.key, color: mainColor));
+                            }),
                             const SizedBox(height: 40),
-                                          
-                                Row(
-                                  children: [
-                                    CheckWidget(),
-                                    const SizedBox(width: 10),
-                                   const TextUtils(
+                            Row(
+                              children: [
+                                CheckWidget(),
+                                const SizedBox(width: 10),
+                                const TextUtils(
                                     text: 'I Accepte ',
                                     fontsize: 15,
                                     fontWeight: FontWeight.normal,
-                                    color: Colors.black
-                                    ),
-                                    const TextUtils(
+                                    color: Colors.black),
+                                const TextUtils(
                                     text: 'Terms & Conditions',
                                     fontsize: 15,
                                     textDecoration: TextDecoration.underline,
                                     fontWeight: FontWeight.normal,
                                     color: Colors.black),
-                                  ],
-                                ),
+                              ],
+                            ),
                             const SizedBox(height: 40),
-                                          
-                                AuthButton(
-                                  text: 'SIGN UP',
-                                  onPressed: (){
-                                    if (formKey.currentState!.validate()) {
-                                      
-                                    }
-                                  }
-                                  ),
+                            GetBuilder<AuthController>(
+                              builder: (context) {
+                                return AuthButton(
+                                    text: 'SIGN UP',
+                                    onPressed: () {
+                                      if (formKey.currentState!.validate()) {
+                                        controller.createAccount(
+                                            "".trim(),
+                                            emailController.text.trim(),
+                                            passwordController.text.trim());
+                                      }
+                                    });
+                              }
+                            ),
                           ],
                         ),
                       ),

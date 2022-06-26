@@ -113,11 +113,18 @@ class LoginScreen extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(height: 40),
-                            AuthButton(
-                                text: 'Login',
-                                onPressed: () {
-                                  if (formKey.currentState!.validate()) {}
-                                }),
+                            GetBuilder<AuthController>(
+                              builder: (context) {
+                                return AuthButton(
+                                    text: 'Login',
+                                    onPressed: () {
+                                      if (formKey.currentState!.validate()) {
+                                        controller.login(emailController.text.trim(),
+                                            passwordController.text.trim());
+                                      }
+                                    });
+                              }
+                            ),
                             const SizedBox(height: 20),
                             const TextUtils(
                                 text: 'OR',
