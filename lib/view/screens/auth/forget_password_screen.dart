@@ -45,7 +45,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                   ),
                   const TextUtils(
                     text:
-                        'If You want to recover your account, then please provide your email below...',
+                        'If You want to recover your Account, then please provide your email below...',
                     fontsize: 15,
                     fontWeight: FontWeight.normal,
                     textAlign: TextAlign.center,
@@ -74,6 +74,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                   const SizedBox(
                     height: 50,
                   ),
+
                   GetBuilder<AuthController>(
                     builder: (context) {
                       return AuthButton(text: 'SEND', onPressed: () {
