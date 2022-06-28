@@ -95,7 +95,7 @@ class SignUpScreen extends StatelessWidget {
                                   controller: passwordController,
                                   hint: 'password',
                                   validator: (value) {
-                                    if (value.toString().length <= 8 ||
+                                    if (value.toString().length < 8 ||
                                         value!.isEmpty) {
                                       return 'The Password length must be 8 or more';
                                     }

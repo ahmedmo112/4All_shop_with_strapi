@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:fshop/firebase_options.dart';
 import 'package:fshop/routes/routes.dart';
+import 'package:fshop/utils/theme.dart';
 import 'package:fshop/view/screens/welcome_screen.dart';
 import 'package:get/get.dart';
 
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
       title: 'FShop',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: mainColor,
       ),
       initialRoute: AppRoutes.welcome,
       getPages:AppRoutes.routes,
