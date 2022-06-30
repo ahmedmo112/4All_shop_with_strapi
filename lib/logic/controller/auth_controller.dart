@@ -1,17 +1,21 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fshop/routes/routes.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthController extends GetxController {
   bool isVisable = false;
   bool isChacked = false;
+  bool isSignedIn = false;
 
   String? displayUserName;
   var userImage;
 
   FirebaseAuth auth = FirebaseAuth.instance;
   var googleSignIn = GoogleSignIn();
+
+  final GetStorage authBox = GetStorage();
 
   void visibilty() {
     isVisable = !isVisable;
@@ -37,6 +41,8 @@ class AuthController extends GetxController {
       });
       update();
       Get.offNamed(Routes.mainScreen);
+      isSignedIn = true;
+      authBox.write("IsLogedIn", isSignedIn);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         Get.snackbar("Error", "The password provided is too weak.");
@@ -57,6 +63,9 @@ class AuthController extends GetxController {
       });
       update();
       Get.offNamed(Routes.mainScreen);
+      isSignedIn = true;
+      authBox.write("IsLogedIn", isSignedIn);
+
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         Get.snackbar("Error", "No user found for that email.");
@@ -67,7 +76,19 @@ class AuthController extends GetxController {
   }
 
   void signOut() async {
-    await auth.signOut();
+    try {
+      await auth.signOut();  
+      await googleSignIn.signOut();
+      displayUserName = '';
+      userImage = '';
+      update();
+      Get.offNamed(Routes.welcomeScreen);
+      isSignedIn = false;
+      authBox.write("IsLogedIn", isSignedIn);
+
+    } catch (e) {
+      Get.snackbar("Error", e.toString());
+    }
   }
 
   void googleSignUp() async {
@@ -78,6 +99,10 @@ class AuthController extends GetxController {
       update();
 
       Get.offNamed(Routes.mainScreen);
+
+      isSignedIn = true;
+      authBox.write("IsLogedIn", isSignedIn);
+
     }).catchError((e) {
       Get.snackbar("Error", e.toString());
     });

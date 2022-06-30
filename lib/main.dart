@@ -15,6 +15,8 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   print(ThemeController().getThemeDataFromBox());
+  print(GetStorage().read<bool>('IsLogedIn'));
+
   runApp(const MyApp());
 }
 
@@ -29,7 +31,10 @@ class MyApp extends StatelessWidget {
       theme: ThemesApp.light,
       darkTheme: ThemesApp.dark,
       themeMode: ThemeController().currentTheme,
-      initialRoute: AppRoutes.welcome,
+      initialRoute:
+          GetStorage().read<bool>('IsLogedIn')??false 
+              ? AppRoutes.mainScreen
+              : AppRoutes.welcome,
       getPages: AppRoutes.routes,
     );
   }
