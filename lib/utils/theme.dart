@@ -16,16 +16,21 @@ const Color languageSettings = Color(0xffCB256C);
 
 class ThemesApp {
   static final light = ThemeData(
-    appBarTheme:const AppBarTheme(backgroundColor: mainColor),
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(selectedItemColor: mainColor,unselectedItemColor: Colors.grey.shade400),
+    appBarTheme: const AppBarTheme(backgroundColor: mainColor),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        selectedItemColor: mainColor,
+        unselectedItemColor: Colors.grey.shade400),
     primaryColor: mainColor,
     backgroundColor: Colors.white,
     brightness: Brightness.light,
   );
 
   static final dark = ThemeData(
-     appBarTheme: const AppBarTheme(),
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(selectedItemColor: pinkClr,unselectedItemColor: Colors.grey.shade400),
+    appBarTheme: const AppBarTheme(backgroundColor: darkGreyClr),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        selectedItemColor: pinkClr,
+        unselectedItemColor: Colors.grey.shade400,
+        backgroundColor: darkGreyClr),
     primaryColor: darkGreyClr,
     backgroundColor: darkGreyClr,
     brightness: Brightness.dark,

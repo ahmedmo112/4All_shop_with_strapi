@@ -12,14 +12,12 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(child: Obx(() {
       return Scaffold(
+        backgroundColor: context.theme.backgroundColor,
         appBar: AppBar(
           elevation: 0.0,
           actions: [
             IconButton(
                 onPressed: () {
-                  Get.isDarkMode
-                      ? Get.changeThemeMode(ThemeMode.light)
-                      : Get.changeThemeMode(ThemeMode.dark);
                 },
                 icon: const Icon(Icons.shopping_bag_outlined))
           ],

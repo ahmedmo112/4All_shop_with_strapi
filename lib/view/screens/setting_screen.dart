@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:fshop/logic/controller/theme_controller.dart';
+import 'package:get/get.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({Key? key}) : super(key: key);
@@ -8,7 +8,13 @@ class SettingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: Text("settings"),),
+      backgroundColor: context.theme.backgroundColor,
+      body: Center(child: TextButton(
+        onPressed: (){
+          ThemeController().changeThemeMode();
+        },
+        child: const Text("Change Theme"),
+      ),),
     );
   }
 }
