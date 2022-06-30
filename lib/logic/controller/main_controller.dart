@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 
 class MainController extends GetxController{
   RxInt currentIndex = 0.obs;
+  bool isDark =false;
 
   final tabs =  [
     const HomeScreen(),
@@ -22,4 +23,8 @@ class MainController extends GetxController{
     "Favorite",
     "Settings",
   ].obs;
+
+  void switchTheme(){
+    isDark = !isDark;
+  }
 }

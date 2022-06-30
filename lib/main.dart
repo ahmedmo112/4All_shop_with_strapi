@@ -23,9 +23,8 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'FShop',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primaryColor: mainColor,
-      ),
+      theme: ThemesApp.light,
+      darkTheme: ThemesApp.dark,
       initialRoute: AppRoutes.welcome,
       getPages:AppRoutes.routes,
     );
