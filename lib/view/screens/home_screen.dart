@@ -5,6 +5,7 @@ import 'package:fshop/utils/theme.dart';
 import 'package:fshop/view/widgets/text_utils.dart';
 import 'package:get/get.dart';
 
+import '../widgets/home/card_Items.dart';
 import '../widgets/home/search_form_text_widget.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -38,11 +39,27 @@ class HomeScreen extends StatelessWidget {
                     const SizedBox(height: 5),
                     const TextUtils(text: "INSPIRATION", fontsize: 28, fontWeight: FontWeight.w800),
                     const SizedBox(height: 20),
-                    SearchFormText(controller: searchController,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(child: SearchFormText(controller: searchController,)),
+                        const SizedBox(width: 10,),
+                        IconButton(onPressed: (){}, icon: const Icon(Icons.sort,color: Colors.white,size: 30,)),
+                      ],
+                    ),
 
                 ],),
               )
-            )
+            ),
+            const SizedBox(height: 10,),
+             Padding(
+              padding: const EdgeInsets.only(left: 20),
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: TextUtils(text: "Products", fontsize: 20, fontWeight: FontWeight.w900,color: Get.isDarkMode ?Colors.white:Colors.black,)),
+            ),
+            const SizedBox(height: 20,),
+            CardItems(),
           ]),
       ),
     );

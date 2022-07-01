@@ -1,5 +1,6 @@
 import 'package:fshop/logic/bindings/auth_bindings.dart';
 import 'package:fshop/logic/bindings/main_bindings.dart';
+import 'package:fshop/logic/bindings/products_bindings.dart';
 import 'package:fshop/view/screens/auth/forget_password_screen.dart';
 import 'package:fshop/view/screens/auth/login_screen.dart';
 import 'package:fshop/view/screens/auth/signup_screen.dart';
@@ -31,7 +32,7 @@ class AppRoutes {
     GetPage(
       name: Routes.mainScreen,
       page: () => MainScreen(),
-      bindings: [AuthBinding(),MainBinding()]
+      bindings: [AuthBinding(),MainBinding(),ProductBinding()]
     ),
   ];
 }
