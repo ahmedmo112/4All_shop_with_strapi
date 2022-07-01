@@ -33,7 +33,6 @@ class SettingScreen extends StatelessWidget {
                     title:"Logout",
                     middleText: "Are you sure you need to logout ?",
                     textCancel: "No",
-                  
                     textConfirm: "Yes",
                     confirmTextColor: Colors.white,
                     cancelTextColor:Get.isDarkMode? pinkClr: mainColor,

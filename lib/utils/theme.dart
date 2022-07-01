@@ -26,7 +26,7 @@ class ThemesApp {
   );
 
   static final dark = ThemeData(
-    appBarTheme: const AppBarTheme(backgroundColor: darkGreyClr),
+    appBarTheme: const AppBarTheme(backgroundColor: pinkClr),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
         selectedItemColor: pinkClr,
         unselectedItemColor: Colors.grey.shade400,

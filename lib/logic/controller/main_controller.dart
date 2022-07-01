@@ -11,9 +11,9 @@ class MainController extends GetxController{
   
 
   final tabs =  [
-    const HomeScreen(),
-    const CategoryScreen(),
-    const FavoriteScreen(),
+    HomeScreen(),
+    CategoryScreen(),
+    FavoriteScreen(),
     SettingScreen()
   ].obs;
 
