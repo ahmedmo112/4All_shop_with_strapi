@@ -1,19 +1,21 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:fshop/logic/controller/product_controller.dart';
+import 'package:fshop/models/product_models.dart';
 import 'package:fshop/view/widgets/text_utils.dart';
 import 'package:get/get.dart';
 
 class FavoriteScreen extends StatelessWidget {
-  const FavoriteScreen({Key? key}) : super(key: key);
+  FavoriteScreen({Key? key}) : super(key: key);
+
+  final controller = Get.put(ProductController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: context.theme.backgroundColor,
-        body: Center(
+        body: Obx((){
+           if(controller.favoriteList!.isEmpty){
+         return Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -28,21 +30,26 @@ class FavoriteScreen extends StatelessWidget {
               fontWeight: FontWeight.bold,
               color: Get.isDarkMode ? Colors.white : Colors.black,
             )
-          ]),
-        )
-        // body: ListView.separated(
-        //   itemCount: 10,
-        //   separatorBuilder: (BuildContext context, int index) {
-        //     return const SizedBox(height: 5,);
-        //   },
-        //   itemBuilder: (BuildContext context, int index) {
-        //     return buildFavoriteItem(context) ;
-        //   },
-        // ),
+          ]));
+        }else{
+        return ListView.separated(
+          physics: const BouncingScrollPhysics(),
+          itemCount: controller.favoriteList!.length,
+          separatorBuilder: (BuildContext context, int index) {
+            return const SizedBox(height: 5,);
+          },
+          itemBuilder: (BuildContext context, int index) {
+            return buildFavoriteItem(context,controller.favoriteList![index]) ;
+          },
         );
+        
+        }
+        })
+        );
+        
   }
 
-  Widget buildFavoriteItem(context) {
+  Widget buildFavoriteItem(context,ProductModel product) {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: SizedBox(
@@ -61,7 +68,7 @@ class FavoriteScreen extends StatelessWidget {
                   child: AspectRatio(
                     aspectRatio: 1,
                     child: Image.network(
-                      "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+                      product.image!,
                       fit: BoxFit.contain,
                     ),
                   ),
@@ -77,14 +84,14 @@ class FavoriteScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
-                      "TITLE TITLE TITLE TITLE TITLE TITLE TITLE TITLE",
+                     Text(
+                      product.title!,
                       overflow: TextOverflow.fade,
                       maxLines: 2,
-                      style:
+                      style: const
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                     ),
-                    Text("\$100",
+                    Text("\$${product.price}",
                         style: Theme.of(context)
                             .textTheme
                             .caption!
@@ -94,7 +101,10 @@ class FavoriteScreen extends StatelessWidget {
               ),
             ),
             IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  controller.removeFromFavoriteList(product.id!);
+                  
+                },
                 icon: const Icon(
                   Icons.favorite,
                   color: Colors.red,

@@ -59,16 +59,33 @@ class CardItems extends StatelessWidget {
             ]),
         child: Column(
           children: [
-            Row(
+            Obx(() => Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+
+                IconButton(
+                    onPressed: () {
+                      controller.isAtFavorite(product.id!)?
+                      controller.removeFromFavoriteList(product.id!):
+                      controller.addToFavoriteList(product.id!);
+                    },
+                    icon: controller.isAtFavorite(product.id!)
+                        ? 
+                         const Icon(Icons.favorite,
+                            size: 21, color: Colors.red):
+                            const Icon(
+                            Icons.favorite_outline,
+                            size: 21,
+                          )),
                 IconButton(
                     onPressed: () {},
-                    icon: const Icon(Icons.favorite_outline, size: 21)),
-                IconButton(
-                    onPressed: () {}, icon: const Icon(Icons.add, size: 21)),
+                    icon: Icon(
+                      Icons.add,
+                      size: 21,
+                      color: Colors.grey.shade400,
+                    )),
               ],
-            ),
+            )),
             Container(
                 width: double.infinity,
                 height: 120,
