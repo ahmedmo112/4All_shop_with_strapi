@@ -1,5 +1,4 @@
 
-import 'dart:html';
 
 import 'package:fshop/services/product_services.dart';
 import 'package:get/get.dart';
@@ -9,7 +8,7 @@ import '../../models/product_models.dart';
 
 class ProductController extends GetxController{
   RxList productList = <ProductModel> [].obs;
-  RxList? favoriteList = <ProductModel> [].obs;
+  RxList favoriteList = <ProductModel> [].obs;
   RxBool isLoading = true.obs;
 
   GetStorage storage = GetStorage();
@@ -34,8 +33,8 @@ class ProductController extends GetxController{
     }
   }
 
-  void readFavorite(){
-    List list = storage.read<List>("favorities")!;
+  void readFavorite()async{
+    List? list = await storage.read<List>("favorities");
     if(list != null){
      favoriteList =  list.map((element) => ProductModel.fromJson(element)).toList().obs;
     }
@@ -43,23 +42,23 @@ class ProductController extends GetxController{
 
   void addToFavoriteList(int productId)async{
 
-    favoriteList!.add(productList
+    favoriteList.add(productList
     .firstWhere((element) => element.id == productId));
     print(productId);
     await storage.write("favorities", favoriteList);
   }
 
   void removeFromFavoriteList(int productId)async{
-    for (var i = 0; i < favoriteList!.length; i++) {
-      if (productId == favoriteList![i].id) {
-        favoriteList!.removeAt(i);
+    for (var i = 0; i < favoriteList.length; i++) {
+      if (productId == favoriteList[i].id) {
+        favoriteList.removeAt(i);
       }
     }
     await storage.write("favorities", favoriteList);
   }
 
   bool isAtFavorite(int productId){
-    return favoriteList!.any((element) => element.id == productId);
+    return favoriteList.any((element) => element.id == productId);
   }
 
 }

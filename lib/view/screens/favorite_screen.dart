@@ -14,7 +14,7 @@ class FavoriteScreen extends StatelessWidget {
     return Scaffold(
         backgroundColor: context.theme.backgroundColor,
         body: Obx((){
-           if(controller.favoriteList!.isEmpty){
+           if(controller.favoriteList.isEmpty){
          return Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -34,12 +34,12 @@ class FavoriteScreen extends StatelessWidget {
         }else{
         return ListView.separated(
           physics: const BouncingScrollPhysics(),
-          itemCount: controller.favoriteList!.length,
+          itemCount: controller.favoriteList.length,
           separatorBuilder: (BuildContext context, int index) {
             return const SizedBox(height: 5,);
           },
           itemBuilder: (BuildContext context, int index) {
-            return buildFavoriteItem(context,controller.favoriteList![index]) ;
+            return buildFavoriteItem(context,controller.favoriteList[index]) ;
           },
         );
         

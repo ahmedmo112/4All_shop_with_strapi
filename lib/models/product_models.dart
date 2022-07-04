@@ -6,7 +6,7 @@ List<ProductModel> productModelFromJson(String str) => List<ProductModel>.from(j
 class ProductModel {
   int? id;
   String? title;
-  double? price;
+  var price;
   String? description;
   String? category;
   String? image;
@@ -32,23 +32,10 @@ class ProductModel {
         json['rating'] != null ?  Rating.fromJson(json['rating']) : null;
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data =  <String, dynamic>{};
-    data['id'] = id;
-    data['title'] = title;
-    data['price'] = price;
-    data['description'] = description;
-    data['category'] = category;
-    data['image'] = image;
-    if (rating != null) {
-      data['rating'] = rating!.toJson();
-    }
-    return data;
-  }
 }
 
 class Rating {
-  double? rate;
+  var rate;
   int? count;
 
   Rating({this.rate, this.count});

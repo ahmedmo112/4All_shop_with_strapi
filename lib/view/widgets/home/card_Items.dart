@@ -142,7 +142,7 @@ class CardItems extends StatelessWidget {
                 overflow: TextOverflow.fade,
                 maxLines: 2,
                 style:
-                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                    const TextStyle(fontWeight: FontWeight.normal, fontSize: 14),
               ),
             )
           ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fshop/logic/controller/main_controller.dart';
+import 'package:fshop/routes/routes.dart';
 import 'package:fshop/utils/theme.dart';
 import 'package:get/get.dart';
 
@@ -18,6 +19,7 @@ class MainScreen extends StatelessWidget {
           actions: [
             IconButton(
                 onPressed: () {
+                  Get.toNamed(Routes.cartScreen);
                 },
                 icon: const Icon(Icons.shopping_bag_outlined))
           ],
