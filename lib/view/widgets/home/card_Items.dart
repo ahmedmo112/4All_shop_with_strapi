@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fshop/logic/bindings/main_bindings.dart';
+import 'package:fshop/logic/controller/cart_controller.dart';
 import 'package:fshop/models/product_models.dart';
 import 'package:fshop/utils/theme.dart';
 import 'package:fshop/view/widgets/text_utils.dart';
@@ -11,6 +12,7 @@ class CardItems extends StatelessWidget {
   CardItems({Key? key}) : super(key: key);
 
   final controller = Get.find<ProductController>();
+  final cartController = Get.find<CartController>();
 
   @override
   Widget build(BuildContext context) {
@@ -73,14 +75,17 @@ class CardItems extends StatelessWidget {
                         ? 
                          const Icon(Icons.favorite,
                             size: 21, color: Colors.red):
-                            const Icon(
+                            Icon(
                             Icons.favorite_outline,
                             size: 21,
+                            color: Colors.grey.shade400
                           )),
                 IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      cartController.addProductToCart(product);
+                    },
                     icon: Icon(
-                      Icons.add,
+                      Icons.shopping_cart_outlined,
                       size: 21,
                       color: Colors.grey.shade400,
                     )),

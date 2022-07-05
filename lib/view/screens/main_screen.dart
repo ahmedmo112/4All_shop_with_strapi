@@ -1,4 +1,6 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:fshop/logic/controller/cart_controller.dart';
 import 'package:fshop/logic/controller/main_controller.dart';
 import 'package:fshop/routes/routes.dart';
 import 'package:fshop/utils/theme.dart';
@@ -8,6 +10,8 @@ class MainScreen extends StatelessWidget {
   MainScreen({Key? key}) : super(key: key);
 
   final controller = Get.find<MainController>();
+  final cartController = Get.find<CartController>();
+  
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +25,10 @@ class MainScreen extends StatelessWidget {
                 onPressed: () {
                   Get.toNamed(Routes.cartScreen);
                 },
-                icon: const Icon(Icons.shopping_bag_outlined))
+                icon: Badge(
+                  position: BadgePosition.topEnd(),
+                  badgeContent: Text(cartController.cartMap.keys.length.toString(),style: const TextStyle(color: Colors.white,)),
+                  child: const Icon(Icons.shopping_bag_outlined)))
           ],
           title: Text(controller.titles[controller.currentIndex.value]),
           centerTitle: true,
