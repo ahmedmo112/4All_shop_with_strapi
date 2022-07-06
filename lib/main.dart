@@ -14,9 +14,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  print(ThemeController().getThemeDataFromBox());
-  print(GetStorage().read<bool>('IsLogedIn'));
-
+ 
   runApp(const MyApp());
 }
 
