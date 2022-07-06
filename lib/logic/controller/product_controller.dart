@@ -1,5 +1,6 @@
 
 
+import 'package:flutter/material.dart';
 import 'package:fshop/services/product_services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -10,6 +11,9 @@ class ProductController extends GetxController{
   RxList productList = <ProductModel> [].obs;
   RxList favoriteList = <ProductModel> [].obs;
   RxBool isLoading = true.obs;
+
+  RxList searchList = <ProductModel> [].obs;
+  TextEditingController searchTextController = TextEditingController();
 
   GetStorage storage = GetStorage();
 
@@ -58,6 +62,20 @@ class ProductController extends GetxController{
 
   bool isAtFavorite(int productId){
     return favoriteList.any((element) => element.id == productId);
+  }
+
+  void addSearchToList(String searchName){
+    searchList.value = productList.where((search) {
+      String title = search.title.toString().toLowerCase();
+      String price = search.price.toString().toLowerCase();
+      return title.contains(searchName.toLowerCase()) || price.contains(searchName.toLowerCase()) ;
+
+    }).toList();
+  }
+
+  void clearSearch(){
+    searchTextController.clear();
+    addSearchToList("");
   }
 
 }

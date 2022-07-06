@@ -27,16 +27,22 @@ class CardItems extends StatelessWidget {
         return Expanded(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5),
-            child: GridView.builder(
+            child: controller.searchList.isEmpty && controller.searchTextController.text.isNotEmpty?
+             Image.asset("assets/images/search_empry_light.png"): GridView.builder(
               physics: const BouncingScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                   childAspectRatio: 0.69,
                   mainAxisSpacing: 9.0,
                   crossAxisSpacing: 6.0,
                   maxCrossAxisExtent: 230),
-              itemCount: controller.productList.length,
+              itemCount: controller.searchList.isEmpty?controller.productList.length:controller.searchList.length,
               itemBuilder: (BuildContext context, int index) {
+                if(controller.searchList.isEmpty){
                 return buildCardItems(controller.productList[index]);
+                }else{
+                 return buildCardItems(controller.searchList[index]);
+
+                }
               },
             ),
           ),
