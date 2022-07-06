@@ -21,14 +21,17 @@ class MainScreen extends StatelessWidget {
         appBar: AppBar(
           elevation: 0.0,
           actions: [
-            IconButton(
-                onPressed: () {
-                  Get.toNamed(Routes.cartScreen);
-                },
-                icon: Badge(
-                  position: BadgePosition.topEnd(),
-                  badgeContent: Text(cartController.cartMap.keys.length.toString(),style: const TextStyle(color: Colors.white,)),
-                  child: const Icon(Icons.shopping_bag_outlined)))
+            Padding(
+              padding: const EdgeInsets.only(right: 8.0),
+              child: IconButton(
+                  onPressed: () {
+                    Get.toNamed(Routes.cartScreen);
+                  },
+                  icon: Badge(
+                    position: BadgePosition.topEnd(),
+                    badgeContent: Text(cartController.cartMap.keys.length.toString(),style: const TextStyle(color: Colors.white,)),
+                    child: const Icon(Icons.shopping_bag_outlined))),
+            )
           ],
           title: Text(controller.titles[controller.currentIndex.value]),
           centerTitle: true,

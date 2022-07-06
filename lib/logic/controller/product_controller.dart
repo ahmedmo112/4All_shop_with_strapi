@@ -44,7 +44,6 @@ class ProductController extends GetxController{
 
     favoriteList.add(productList
     .firstWhere((element) => element.id == productId));
-    print(productId);
     await storage.write("favorities", favoriteList);
   }
 

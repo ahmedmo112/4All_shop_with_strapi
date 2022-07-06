@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fshop/view/widgets/bottom_bar_widget.dart';
 import 'package:fshop/view/widgets/text_utils.dart';
 import 'package:get/get.dart';
 
@@ -13,7 +14,8 @@ class CartItemsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
+    return Column(
+      children: [
         Expanded(
             child: Container(
           width: double.infinity,
@@ -32,57 +34,15 @@ class CartItemsWidget extends StatelessWidget {
               },
               itemCount: controller.cartMap.keys.length),
         )),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          width: double.infinity,
-          height: 70,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Expanded(
-                flex: 1,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Total",
-                      style: Theme.of(context).textTheme.caption!,
-                    ),
-                    TextUtils(
-                      text: "\$${controller.total.toStringAsFixed(2)}",
-                      fontsize: 15,
-                      fontWeight: FontWeight.bold,
-                      color: Get.isDarkMode ? Colors.white : Colors.black,
-                    )
-                  ],
-                ),
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              Expanded(
-                flex: 3,
-                child: SizedBox(
-                  height: 45,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        primary: Get.isDarkMode ? pinkClr : mainColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 40, vertical: 12)),
-                    onPressed: () {},
-                    child: const TextUtils(
-                        text: 'Check Out',
+        BottomBar(
+          subtitle: "Total",
+          price: controller.total,
+          buttonTitle: const TextUtils(
+                        text: "Check Out",
                         fontsize: 18,
                         fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
+          onTap: () {},
+        )
       ],
     );
   }
