@@ -24,13 +24,5 @@ class MainController extends GetxController{
     "Settings",
   ].obs;
 
-  bool checkIsHome(){
-    if (currentIndex.value==0) {
-      return true;
-    }else{
-      return false;
-    }
-  }
-
 
 }

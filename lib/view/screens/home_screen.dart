@@ -18,6 +18,7 @@ class HomeScreen extends StatelessWidget {
       child: Scaffold(
           backgroundColor: context.theme.backgroundColor,
           body: CustomScrollView(
+            physics:const BouncingScrollPhysics(),
             slivers: [
               SliverAppBar(
                 pinned: false,
