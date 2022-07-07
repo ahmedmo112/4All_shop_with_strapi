@@ -31,7 +31,7 @@ class BottomBar extends StatelessWidget {
                       style: Theme.of(context).textTheme.caption!,
                     ),
                     TextUtils(
-                      text: "\$${price.toStringAsFixed(2)}",
+                      text: "\$${price.toDouble().toStringAsFixed(2)}",
                       fontsize: 15,
                       fontWeight: FontWeight.bold,
                       color: Get.isDarkMode ? Colors.white : Colors.black,

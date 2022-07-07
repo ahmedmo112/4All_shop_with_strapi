@@ -14,6 +14,7 @@ class ProductController extends GetxController{
 
   RxList searchList = <ProductModel> [].obs;
   TextEditingController searchTextController = TextEditingController();
+  bool isWrittenAtSearchBar = false;
 
   GetStorage storage = GetStorage();
 
@@ -73,9 +74,21 @@ class ProductController extends GetxController{
     }).toList();
   }
 
+  void checkSearchIsEmpty(){
+    if (searchTextController.text.isNotEmpty) {
+       isWrittenAtSearchBar=true;
+    }else{
+       isWrittenAtSearchBar=false;
+    }
+    update();
+    
+  }
+
   void clearSearch(){
-    searchTextController.clear();
+    isWrittenAtSearchBar=false;
     addSearchToList("");
+    searchTextController.clear();
+    update();
   }
 
 }

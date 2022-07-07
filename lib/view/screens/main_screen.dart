@@ -15,10 +15,11 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: Obx(() {
+    return Obx(() {
       return Scaffold(
         backgroundColor: context.theme.backgroundColor,
-        appBar: AppBar(
+        appBar: 
+         AppBar(
           elevation: 0.0,
           actions: [
             Padding(
@@ -74,6 +75,6 @@ class MainScreen extends StatelessWidget {
         body: IndexedStack(
             index: controller.currentIndex.value, children: controller.tabs),
       );
-    }));
+    });
   }
 }

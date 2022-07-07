@@ -37,7 +37,7 @@ class ProductDetailsScreen extends StatelessWidget {
             
             BottomBar(
               subtitle: "Price",
-              price: product.price,
+              price: product.price!,
               buttonTitle: Row(
                 children: const [
                   TextUtils(

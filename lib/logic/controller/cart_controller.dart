@@ -27,7 +27,7 @@ class CartController extends GetxController {
       "Added To Your Cart Successfully!",
       colorText: Colors.white,
       backgroundColor: Colors.green.withOpacity(0.5),
-      snackPosition: SnackPosition.BOTTOM,
+      snackPosition: SnackPosition.TOP,
       margin: const EdgeInsets.symmetric(vertical: 30,horizontal: 25),
     );
     calcTotalPrice();
@@ -58,7 +58,7 @@ class CartController extends GetxController {
   void calcTotalPrice() {
     total = 0;
     cartMap.forEach((key, value) {
-      total = total + (key.price * value);
+      total = total + (key.price! * value);
     });
   }
 }

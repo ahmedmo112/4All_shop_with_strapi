@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fshop/logic/controller/product_controller.dart';
+import 'package:fshop/utils/theme.dart';
 import 'package:get/get.dart';
 
 class SearchFormText extends StatelessWidget {
@@ -19,10 +20,11 @@ class SearchFormText extends StatelessWidget {
         keyboardType: TextInputType.text,
         onChanged: (search) {
           controller.addSearchToList(search);
+          controller.checkSearchIsEmpty();
         },
         decoration: InputDecoration(
           suffixIcon: 
-          controller.searchTextController.text.isNotEmpty?
+          controller.isWrittenAtSearchBar?
            IconButton(
             onPressed: () {
               controller.clearSearch();
@@ -32,7 +34,7 @@ class SearchFormText extends StatelessWidget {
           fillColor: Colors.white,
           prefixIcon: const Icon(
             Icons.search,
-            color: Colors.black,
+            color: mainColor,
           ),
           hintText: "Search you're looking for",
           hintStyle: const TextStyle(
