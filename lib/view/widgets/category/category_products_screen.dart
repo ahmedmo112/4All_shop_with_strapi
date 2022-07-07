@@ -1,36 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:fshop/logic/bindings/main_bindings.dart';
+import 'package:flutter/src/foundation/key.dart';
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:fshop/logic/controller/cart_controller.dart';
+import 'package:fshop/logic/controller/category_controller.dart';
+import 'package:fshop/logic/controller/product_controller.dart';
 import 'package:fshop/models/product_models.dart';
 import 'package:fshop/utils/theme.dart';
 import 'package:fshop/view/screens/product_details_screen.dart';
 import 'package:fshop/view/widgets/text_utils.dart';
 import 'package:get/get.dart';
 
-import '../../../logic/controller/product_controller.dart';
+class CategoryProducts extends StatelessWidget {
+  CategoryProducts({Key? key, required this.categoryName}) : super(key: key);
+  final String categoryName;
 
-class CardItems extends StatelessWidget {
-  CardItems({Key? key}) : super(key: key);
-
-  final controller = Get.find<ProductController>();
+  final controller = Get.find<CategoryController>();
   final cartController = Get.find<CartController>();
+  final favoriteController = Get.find<ProductController>();
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      if (controller.isLoading.value) {
-        return const Center(
-            child: CircularProgressIndicator(
-          color: mainColor,
-        ));
-      } else {
-        return Expanded(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5),
-            child: controller.searchList.isEmpty &&
-                    controller.searchTextController.text.isNotEmpty
-                ? Image.asset("assets/images/search_empry_light.png")
-                : GridView.builder(
+    return Scaffold(
+        backgroundColor: context.theme.backgroundColor,
+        appBar: AppBar(
+          title: Text(categoryName),
+          centerTitle: true,
+        ),
+        body: Obx(() {
+          return controller.isCategoryProductsLoading.value
+              ? const Center(
+                  child: CircularProgressIndicator(
+                    color: mainColor,
+                  ),
+                )
+              : Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 5),
+                  child: GridView.builder(
                     physics: const BouncingScrollPhysics(),
                     gridDelegate:
                         const SliverGridDelegateWithMaxCrossAxisExtent(
@@ -38,21 +43,13 @@ class CardItems extends StatelessWidget {
                             mainAxisSpacing: 9.0,
                             crossAxisSpacing: 6.0,
                             maxCrossAxisExtent: 230),
-                    itemCount: controller.searchList.isEmpty
-                        ? controller.productList.length
-                        : controller.searchList.length,
+                    itemCount: controller.categoryProducts.length,
                     itemBuilder: (BuildContext context, int index) {
-                      if (controller.searchList.isEmpty) {
-                        return buildCardItems(controller.productList[index]);
-                      } else {
-                        return buildCardItems(controller.searchList[index]);
-                      }
+                      return buildCardItems(controller.categoryProducts[index]);
                     },
                   ),
-          ),
-        );
-      }
-    });
+                );
+        }));
   }
 
   Widget buildCardItems(ProductModel product) {
@@ -83,11 +80,13 @@ class CardItems extends StatelessWidget {
                     children: [
                       IconButton(
                           onPressed: () {
-                            controller.isAtFavorite(product.id!)
-                                ? controller.removeFromFavoriteList(product.id!)
-                                : controller.addToFavoriteList(product.id!);
+                            favoriteController.isAtFavorite(product.id!)
+                                ? favoriteController
+                                    .removeFromFavoriteList(product.id!)
+                                : favoriteController
+                                    .addToFavoriteList(product.id!);
                           },
-                          icon: controller.isAtFavorite(product.id!)
+                          icon: favoriteController.isAtFavorite(product.id!)
                               ? const Icon(Icons.favorite,
                                   size: 21, color: Colors.red)
                               : Icon(Icons.favorite_outline,

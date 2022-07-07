@@ -44,8 +44,9 @@ class CartScreen extends StatelessWidget {
           elevation: 0.0,
           leading: IconButton(
             onPressed: () {
-              Get.offNamed(Routes.mainScreen);
+              // Get.offNamed(Routes.mainScreen);
               // Get.back();
+              Navigator.pop(context);
             },
             icon:const Icon(Icons.arrow_back),
           ),
