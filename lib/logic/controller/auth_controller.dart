@@ -9,13 +9,31 @@ class AuthController extends GetxController {
   bool isChacked = false;
   bool isSignedIn = false;
 
-  String? displayUserName;
-  var userImage;
+  RxString displayUserName = "".obs;
+  RxString userImage = "".obs;
+  RxString userEmail = "".obs;
 
   FirebaseAuth auth = FirebaseAuth.instance;
   var googleSignIn = GoogleSignIn();
 
   final GetStorage authBox = GetStorage();
+
+  User? get   userProfile =>  auth.currentUser;
+
+
+  @override
+  void onInit()async {
+    await getUserData();
+    super.onInit();
+  }
+
+  //! use hive to store data
+  getUserData(){
+    displayUserName.value = (userProfile != null? userProfile!.displayName!.isNotEmpty? userProfile!.displayName:"No user name" : "")!;
+    userEmail.value =  (userProfile != null? userProfile!.email : "No email")!;
+    userImage.value = (userProfile != null? userProfile!.photoURL : "")!;
+    update();
+  }
 
   void visibilty() {
     isVisable = !isVisable;
@@ -35,9 +53,10 @@ class AuthController extends GetxController {
         email: email,
         password: password,
       )
-          .then((value) {
-        displayUserName = name;
-        auth.currentUser!.updateDisplayName(displayUserName);
+          .then((value) async{
+        // displayUserName.value = name;
+        // userEmail.value = email;
+        //!hive to store data
       });
       update();
       Get.offNamed(Routes.mainScreen);
@@ -58,9 +77,12 @@ class AuthController extends GetxController {
     try {
       await auth
           .signInWithEmailAndPassword(email: email, password: password)
-          .then((value) {
-        displayUserName = auth.currentUser!.displayName;
+          .then((value) async{
+        displayUserName.value = auth.currentUser!.displayName??" ";
+        userEmail.value = auth.currentUser!.email??" ";
+        //!hive to store data
       });
+      // await getUserData();
       update();
       Get.offNamed(Routes.mainScreen);
       isSignedIn = true;
@@ -71,6 +93,9 @@ class AuthController extends GetxController {
         Get.snackbar("Error", "No user found for that email.");
       } else if (e.code == 'wrong-password') {
         Get.snackbar("Error", "Wrong password provided for that user.");
+      }else{
+        Get.snackbar("Error", e.toString());
+
       }
     }
   }
@@ -79,8 +104,9 @@ class AuthController extends GetxController {
     try {
       await auth.signOut();  
       await googleSignIn.signOut();
-      displayUserName = '';
-      userImage = '';
+      displayUserName.value = '';
+      userImage.value = '';
+      //!hive to delete data
       update();
       Get.offNamed(Routes.welcomeScreen);
       isSignedIn = false;
@@ -92,16 +118,24 @@ class AuthController extends GetxController {
   }
 
   void googleSignUp() async {
-    await googleSignIn.signIn().then((value) {
-      displayUserName = value!.displayName;
-      userImage = value.photoUrl;
+    await googleSignIn.signIn().then((value) async {
+      displayUserName.value = value!.displayName!;
+      userEmail.value = value.email;
+      userImage.value = value.photoUrl!;
 
-      update();
+      GoogleSignInAuthentication googleSignInAuthentication = await value.authentication;
+      final AuthCredential authCredential = GoogleAuthProvider.credential(
+        idToken: googleSignInAuthentication.idToken,
+        accessToken: googleSignInAuthentication.accessToken,
+      );
+
+      await auth.signInWithCredential(authCredential);
 
       Get.offNamed(Routes.mainScreen);
 
       isSignedIn = true;
       authBox.write("IsLogedIn", isSignedIn);
+      update();
 
     }).catchError((e) {
       Get.snackbar("Error", e.toString());
