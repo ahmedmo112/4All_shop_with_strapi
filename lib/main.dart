@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:fshop/firebase_options.dart';
@@ -8,12 +10,18 @@ import 'package:fshop/utils/theme.dart';
 import 'package:fshop/view/screens/welcome_screen.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+
 
 import 'utils/my_string.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
+  
+  await Hive.initFlutter();
+  await Hive.openBox<Map<Map<String,dynamic>,int>>('cart');
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

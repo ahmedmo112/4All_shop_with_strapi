@@ -21,8 +21,8 @@ class ProductController extends GetxController{
 
   @override
   void onInit() {
-    getProducts();
     readFavorite();
+    getProducts();
     super.onInit();
   }
 
@@ -38,8 +38,8 @@ class ProductController extends GetxController{
     }
   }
 
-  void readFavorite()async{
-    List? list = await storage.read<List>("favorities");
+  void readFavorite(){
+    List? list =  storage.read<List>("favorities");
     if(list != null){
      favoriteList =  list.map((element) => ProductModel.fromJson(element)).toList().obs;
     }

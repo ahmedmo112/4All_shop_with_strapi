@@ -3,14 +3,18 @@ import 'package:fshop/logic/bindings/products_bindings.dart';
 import 'package:fshop/models/product_models.dart';
 import 'package:fshop/utils/theme.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
 
 class CartController extends GetxController {
   RxMap<ProductModel, int> cartMap = <ProductModel, int>{}.obs;
 
   double total = 0;
 
+  // Box storedCartItems = Hive.box('cart');
+
   @override
-  void onInit() {
+  void onInit() async {
+    // cartMap = storedCartItems.get('cartMap');
     calcTotalPrice();
     super.onInit();
   }
@@ -28,8 +32,9 @@ class CartController extends GetxController {
       colorText: Colors.white,
       backgroundColor: Colors.green.withOpacity(0.5),
       snackPosition: SnackPosition.TOP,
-      margin: const EdgeInsets.symmetric(vertical: 30,horizontal: 25),
+      margin: const EdgeInsets.symmetric(vertical: 30, horizontal: 25),
     );
+    //
     calcTotalPrice();
   }
 
@@ -42,16 +47,19 @@ class CartController extends GetxController {
         removeOneProduct(product);
       }
     }
+    //
     calcTotalPrice();
   }
 
   void removeOneProduct(ProductModel product) {
     cartMap.remove(product);
+
     calcTotalPrice();
   }
 
   void claerCartItems() {
     cartMap.clear();
+
     calcTotalPrice();
   }
 
