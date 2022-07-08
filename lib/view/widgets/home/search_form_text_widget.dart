@@ -36,7 +36,7 @@ class SearchFormText extends StatelessWidget {
             Icons.search,
             color: mainColor,
           ),
-          hintText: "Search you're looking for",
+          hintText: "Search you're looking for".tr,
           hintStyle: const TextStyle(
               color: Colors.black45, fontSize: 14, fontWeight: FontWeight.w500),
           filled: true,

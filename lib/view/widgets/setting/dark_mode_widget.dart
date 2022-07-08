@@ -14,13 +14,13 @@ class DarkModeWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const IconWidget(
+         IconWidget(
             color: darkSettings,
-            icon: Icon(
+            icon:const Icon(
               Icons.dark_mode_outlined,
             color: Colors.white,
             ),
-            text: "Dark Mode",
+            text: "Dark Mode".tr,
             ),
         Switch(
           value: Get.isDarkMode,

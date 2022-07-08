@@ -20,7 +20,7 @@ class MainController extends GetxController{
   final titles = [
     "ForAll Shop",
     "Category",
-    "Favorite",
+    "Favorities",
     "Settings",
   ].obs;
 

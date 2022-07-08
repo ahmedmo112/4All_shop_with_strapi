@@ -1,0 +1,21 @@
+Map<String,String> arabicMap={
+"GENERAL":"عام",
+"Logout":"تسجيل خروج",
+"Language":"اللغة",
+"Dark Mode":"المظهر الليلي",
+"Products":"المنتجات",
+"Find Your":"جد",
+"INSPIRATION":"الهامك",
+"Search you're looking for":"أبحث عما تريد",
+"Categories":"الفئات",
+"Category":"الفئات",
+"Favorities":"المفضلات",
+"Settings":"الاعدادات",
+"Cart Items":"عناصر العربة",
+"Your Cart is ":"عربتك ",
+"Empty":"فارغة",
+"Add items to get started":"اذهب و قم باضافه بعض المنتجات",
+"Total":"الاجمالي",
+"Check Out":"الدفع",
+"Home":"الرئيسية"
+};

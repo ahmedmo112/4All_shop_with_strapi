@@ -19,13 +19,13 @@ class EmptyCart extends StatelessWidget {
         Wrap(
           children: [
             TextUtils(
-              text: "Your Cart is ",
+              text: "Your Cart is ".tr,
               fontsize: 35,
               fontWeight: FontWeight.bold,
               color: Get.isDarkMode ? Colors.white : Colors.black,
             ),
             TextUtils(
-              text: "Empty",
+              text: "Empty".tr,
               fontsize: 35,
               fontWeight: FontWeight.bold,
               color: Get.isDarkMode ? pinkClr : mainColor,
@@ -33,7 +33,7 @@ class EmptyCart extends StatelessWidget {
           ],
         ),
         TextUtils(
-              text: "Add items to get started",
+              text: "Add items to get started".tr,
               fontsize: 17,
               fontWeight: FontWeight.normal,
               color: Get.isDarkMode ? Colors.white : Colors.black,

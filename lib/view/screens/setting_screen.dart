@@ -33,7 +33,7 @@ class SettingScreen extends StatelessWidget {
             height: 15,
           ),
           TextUtils(
-            text: "GENERAL",
+            text: "GENERAL".tr,
             fontsize: 18,
             fontWeight: FontWeight.bold,
             color: Get.isDarkMode ? pinkClr : mainColor,
@@ -63,13 +63,13 @@ class SettingScreen extends StatelessWidget {
                   onCancel: () {},
                   onConfirm: () => controller.signOut());
             },
-            child:const IconWidget(
+            child: IconWidget(
               color: logOutSettings,
-              icon: Icon(
+              icon:const Icon(
                 Icons.logout,
                 color: Colors.white,
               ),
-              text: "LogOut",
+              text: "Logout".tr,
             ),
           )
         ],

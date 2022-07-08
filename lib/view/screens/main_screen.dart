@@ -34,35 +34,35 @@ class MainScreen extends StatelessWidget {
                     child: const Icon(Icons.shopping_bag_outlined))),
             )
           ],
-          title: Text(controller.titles[controller.currentIndex.value]),
+          title: Text(controller.titles[controller.currentIndex.value].tr),
           centerTitle: true,
         ),
         bottomNavigationBar: BottomNavigationBar(
           showSelectedLabels: true,
           showUnselectedLabels: false,
-          items: const [
+          items:  [
             BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                label: "Home",
-                activeIcon: Icon(
+                icon: const Icon(Icons.home),
+                label: "Home".tr,
+                activeIcon: const Icon(
                   Icons.home,
                 )),
             BottomNavigationBarItem(
-                icon: Icon(Icons.category),
-                label: "Category",
-                activeIcon: Icon(
+                icon:const Icon(Icons.category),
+                label: "Category".tr,
+                activeIcon: const Icon(
                   Icons.category,
                 )),
             BottomNavigationBarItem(
-                icon: Icon(Icons.favorite),
-                label: "Favorite",
-                activeIcon: Icon(
+                icon: const Icon(Icons.favorite),
+                label: "Favorities".tr,
+                activeIcon:const  Icon(
                   Icons.favorite,
                 )),
             BottomNavigationBarItem(
-                icon: Icon(Icons.settings),
-                label: "Settings",
-                activeIcon: Icon(
+                icon: const Icon(Icons.settings),
+                label: "Settings".tr,
+                activeIcon:const Icon(
                   Icons.settings,
                 )),
           ],

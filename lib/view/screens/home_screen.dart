@@ -48,13 +48,13 @@ class HomeScreen extends StatelessWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const TextUtils(
-                                      text: "Find Your",
+                                  TextUtils(
+                                      text: "Find Your".tr,
                                       fontsize: 25,
                                       fontWeight: FontWeight.bold),
                                   const SizedBox(height: 5),
-                                  const TextUtils(
-                                      text: "INSPIRATION",
+                                   TextUtils(
+                                      text: "INSPIRATION".tr,
                                       fontsize: 28,
                                       fontWeight: FontWeight.w800),
                                   const SizedBox(height: 20),
@@ -97,7 +97,7 @@ class HomeScreen extends StatelessWidget {
                         child: Align(
                             alignment: Alignment.topLeft,
                             child: TextUtils(
-                              text: "Products",
+                              text: "Products".tr,
                               fontsize: 20,
                               fontWeight: FontWeight.w900,
                               color:

@@ -1,0 +1,21 @@
+Map<String,String> englishMap={
+"GENERAL":"GENERAL",
+"Logout":"Logout",
+"Language":"Language",
+"Dark Mode":"Dark Mode",
+"Products":"Products",
+"Find Your":"Find Your",
+"INSPIRATION":"INSPIRATION",
+"Search you're looking for":"Search you're looking for",
+"Categories":"Categories",
+"Category":"Category",
+"Favorities":"Favorities",
+"Settings":"Settings",
+"Cart Items":"Cart Items",
+"Your Cart is ":"Your Cart is ",
+"Empty":"Empty",
+"Add items to get started":"Add items to get started",
+"Total":"Total",
+"Check Out":"Check Out",
+"Home":"Home"
+};

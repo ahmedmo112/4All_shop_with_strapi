@@ -35,10 +35,10 @@ class CartItemsWidget extends StatelessWidget {
               itemCount: controller.cartMap.keys.length),
         )),
         BottomBar(
-          subtitle: "Total",
+          subtitle: "Total".tr,
           price: controller.total,
-          buttonTitle: const TextUtils(
-                        text: "Check Out",
+          buttonTitle:  TextUtils(
+                        text: "Check Out".tr,
                         fontsize: 18,
                         fontWeight: FontWeight.bold),
           onTap: () {},

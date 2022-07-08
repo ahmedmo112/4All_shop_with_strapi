@@ -22,7 +22,7 @@ class CategoryScreen extends StatelessWidget {
               child: Align(
                 alignment: Alignment.centerLeft,
                   child:  TextUtils(
-                      text: "Categories",
+                      text: "Categories".tr,
                       fontsize: 27,
                       fontWeight: FontWeight.bold,
                       color: Get.isDarkMode?Colors.white:Colors.black
