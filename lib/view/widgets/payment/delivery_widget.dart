@@ -66,10 +66,8 @@ class _DeliveryWidgetState extends State<DeliveryWidget> {
                     cancelTextColor: mainColor,
                     confirmTextColor: Colors.white,
                     buttonColor: mainColor,
-                    onCancel: () {
-                      Get.back();
-                    },
                     onConfirm: () {
+                      Get.back();
                       controller.phoneNumber.value = phoneController.text;
                     },
                     content: Padding(
@@ -194,7 +192,7 @@ class _DeliveryWidgetState extends State<DeliveryWidget> {
                         color: Colors.black),
                     
                     const SizedBox(
-                  width: 100,
+                  width: 50,
                 ),
                     SizedBox(
                       child: icon,
