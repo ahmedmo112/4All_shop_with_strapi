@@ -17,7 +17,7 @@ class BottomBar extends StatelessWidget {
     return Container(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           width: double.infinity,
-          height: 70,
+          height: 75,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -45,7 +45,7 @@ class BottomBar extends StatelessWidget {
               Expanded(
                 flex: 3,
                 child: SizedBox(
-                  height: 45,
+                  height: 52,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         primary: Get.isDarkMode ? pinkClr : mainColor,

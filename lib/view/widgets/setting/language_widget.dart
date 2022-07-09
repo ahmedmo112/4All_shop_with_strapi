@@ -37,12 +37,13 @@ class LanguageWidget extends StatelessWidget {
                 ),
                 child: DropdownButtonHideUnderline(
                   child: DropdownButton<String>(
-                    value: en,
+                    value: controller.lang,
                     items: [
                       DropdownMenuItem(child: Text(english),value: en,),
                       DropdownMenuItem(child: Text(arabic),value: ar,),
                     ],
                     onChanged: (value) {
+                      controller.lang = value;
                       controller.setAppLangoage(value!);
                     },
                   ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fshop/logic/controller/auth_controller.dart';
+import 'package:fshop/logic/controller/setting_controller.dart';
 import 'package:fshop/logic/controller/theme_controller.dart';
 import 'package:fshop/utils/theme.dart';
 import 'package:fshop/view/widgets/cart/cart_item.dart';
@@ -41,7 +42,7 @@ class SettingScreen extends StatelessWidget {
           const SizedBox(
             height: 15,
           ),
-          const DarkModeWidget(),
+          DarkModeWidget(),
           const SizedBox(
             height: 15,
           ),
@@ -74,41 +75,6 @@ class SettingScreen extends StatelessWidget {
           )
         ],
       ),
-      // body: Center(child: Column(
-      //   mainAxisAlignment: MainAxisAlignment.center,
-      //   children: [
-      //     TextButton(
-      //       onPressed: (){
-      //         ThemeController().changeThemeMode();
-      //       },
-      //       child: const Text("Change Theme"),
-      //     ),
-      //     const SizedBox(
-      //       height: 20,
-      //     ),
-      //      GetBuilder<AuthController>(
-      //        builder: (context) {
-      //          return TextButton(
-      //           onPressed: (){
-      //             Get.defaultDialog(
-      //               title:"Logout",
-      //               middleText: "Are you sure you need to logout ?",
-      //               textCancel: "No",
-      //               textConfirm: "Yes",
-      //               confirmTextColor: Colors.white,
-      //               cancelTextColor:Get.isDarkMode? pinkClr: mainColor,
-      //               buttonColor: Get.isDarkMode? pinkClr:mainColor,
-      //               onCancel: (){},
-      //               onConfirm: ()=>controller.signOut()
-      //             );
-
-      //           },
-      //           child: const Text("Log Out"),
-      //     );
-      //        }
-      //      ),
-      //   ],
-      // ),),
     );
   }
 }

@@ -17,6 +17,7 @@ class AuthController extends GetxController {
   var googleSignIn = GoogleSignIn();
 
   final GetStorage authBox = GetStorage();
+  Map userData = {};
 
   User? get   userProfile =>  auth.currentUser;
 
@@ -27,11 +28,12 @@ class AuthController extends GetxController {
     super.onInit();
   }
 
-  //! use hive to store data
-  getUserData(){
-    displayUserName.value = (userProfile != null? userProfile!.displayName!.isNotEmpty? userProfile!.displayName:"No user name" : "")!;
-    userEmail.value =  (userProfile != null? userProfile!.email : "No email")!;
-    userImage.value = (userProfile != null? userProfile!.photoURL : "")!;
+ 
+  getUserData()async{
+    userData = await authBox.read("userData");
+    displayUserName.value = userData["name"]??"";
+    userEmail.value = userData["email"];
+    userImage.value = userData["image"]??"";
     update();
   }
 
@@ -54,9 +56,13 @@ class AuthController extends GetxController {
         password: password,
       )
           .then((value) async{
-        // displayUserName.value = name;
-        // userEmail.value = email;
-        //!hive to store data
+        displayUserName.value = name;
+        userEmail.value = email;
+        authBox.write("userData", {
+          "name":name,
+          "email":email,
+          "image": "",
+        });
       });
       update();
       Get.offNamed(Routes.mainScreen);
@@ -78,11 +84,10 @@ class AuthController extends GetxController {
       await auth
           .signInWithEmailAndPassword(email: email, password: password)
           .then((value) async{
-        displayUserName.value = auth.currentUser!.displayName??" ";
-        userEmail.value = auth.currentUser!.email??" ";
-        //!hive to store data
+        displayUserName.value = auth.currentUser!.displayName!;
+        userEmail.value = email;
       });
-      // await getUserData();
+      
       update();
       Get.offNamed(Routes.mainScreen);
       isSignedIn = true;
@@ -106,7 +111,7 @@ class AuthController extends GetxController {
       await googleSignIn.signOut();
       displayUserName.value = '';
       userImage.value = '';
-      //!hive to delete data
+      authBox.remove("userData");
       update();
       Get.offNamed(Routes.welcomeScreen);
       isSignedIn = false;
@@ -122,6 +127,11 @@ class AuthController extends GetxController {
       displayUserName.value = value!.displayName!;
       userEmail.value = value.email;
       userImage.value = value.photoUrl!;
+      authBox.write("userData", {
+          "name":value.displayName!,
+          "email":value.email,
+          "image": value.photoUrl!,
+        });
 
       GoogleSignInAuthentication googleSignInAuthentication = await value.authentication;
       final AuthCredential authCredential = GoogleAuthProvider.credential(
