@@ -17,5 +17,9 @@ Map<String,String> arabicMap={
 "Add items to get started":"اذهب و قم باضافه بعض المنتجات",
 "Total":"الاجمالي",
 "Check Out":"الدفع",
-"Home":"الرئيسية"
+"Home":"الرئيسية",
+"Payment":"الدفع",
+"Shipping To":"الشحن الي",
+"Payment method":"وسيلة الدفع",
+"Pay Now":"ادفع الان",
 };

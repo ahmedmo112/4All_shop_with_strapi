@@ -3,7 +3,7 @@ import 'package:fshop/logic/bindings/products_bindings.dart';
 import 'package:fshop/models/product_models.dart';
 import 'package:fshop/utils/theme.dart';
 import 'package:get/get.dart';
-import 'package:hive/hive.dart';
+
 
 class CartController extends GetxController {
   RxMap<ProductModel, int> cartMap = <ProductModel, int>{}.obs;

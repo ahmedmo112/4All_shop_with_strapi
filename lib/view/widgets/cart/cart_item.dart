@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fshop/routes/routes.dart';
 import 'package:fshop/view/widgets/bottom_bar_widget.dart';
 import 'package:fshop/view/widgets/text_utils.dart';
 import 'package:get/get.dart';
@@ -41,7 +42,9 @@ class CartItemsWidget extends StatelessWidget {
                         text: "Check Out".tr,
                         fontsize: 18,
                         fontWeight: FontWeight.bold),
-          onTap: () {},
+          onTap: () {
+            Get.toNamed(Routes.paymentScreen);
+          },
         )
       ],
     );

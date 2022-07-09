@@ -30,7 +30,7 @@ class AuthController extends GetxController {
 
  
   getUserData()async{
-    userData = await authBox.read("userData");
+    userData = await authBox.read("userData")??{};
     displayUserName.value = userData["name"]??"";
     userEmail.value = userData["email"];
     userImage.value = userData["image"]??"";
@@ -84,7 +84,7 @@ class AuthController extends GetxController {
       await auth
           .signInWithEmailAndPassword(email: email, password: password)
           .then((value) async{
-        displayUserName.value = auth.currentUser!.displayName!;
+        displayUserName.value = "";
         userEmail.value = email;
       });
       

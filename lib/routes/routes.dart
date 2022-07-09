@@ -6,6 +6,7 @@ import 'package:fshop/view/screens/auth/login_screen.dart';
 import 'package:fshop/view/screens/auth/signup_screen.dart';
 import 'package:fshop/view/screens/cart_screen.dart';
 import 'package:fshop/view/screens/main_screen.dart';
+import 'package:fshop/view/screens/payment_screen.dart';
 import 'package:fshop/view/screens/welcome_screen.dart';
 import 'package:fshop/view/widgets/auth/auth_button_widget.dart';
 import 'package:get/get.dart';
@@ -31,14 +32,21 @@ class AppRoutes {
         page: () => ForgetPasswordScreen(),
         binding: AuthBinding()),
     GetPage(
-      name: Routes.mainScreen,
-      page: () => MainScreen(),
-      bindings: [AuthBinding(),MainBinding(),ProductBinding()]
-    ),
+        name: Routes.mainScreen,
+        page: () => MainScreen(),
+        bindings: [AuthBinding(), MainBinding(), ProductBinding()]),
     GetPage(
         name: Routes.cartScreen,
         page: () => CartScreen(),
         binding: ProductBinding()),
+    GetPage(
+     name: Routes.paymentScreen, page: () => PaymentScreen(),
+     bindings: [
+      AuthBinding(),
+      MainBinding(),
+      ProductBinding(),
+      MainBinding(),
+    ]),
   ];
 }
 
@@ -49,4 +57,5 @@ class Routes {
   static const forgetPasswordScreen = "/forgetPasswordScreen";
   static const mainScreen = "/mainScreen";
   static const cartScreen = "/cartScreen";
+  static const paymentScreen = "/paymentScreen";
 }

@@ -17,5 +17,9 @@ Map<String,String> englishMap={
 "Add items to get started":"Add items to get started",
 "Total":"Total",
 "Check Out":"Check Out",
-"Home":"Home"
+"Home":"Home",
+"Payment":"Payment",
+"Shipping To":"Shipping To",
+"Payment method":"Payment method",
+"Pay Now":"Pay Now",
 };
