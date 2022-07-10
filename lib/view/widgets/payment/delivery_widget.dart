@@ -60,7 +60,11 @@ class _DeliveryWidgetState extends State<DeliveryWidget> {
             title: "Delivery",
             name: authController.displayUserName.value,
             phone: controller.phoneNumber.value,
-            address: controller.isLocatingLocation.value?const CircularProgressIndicator() :TextUtils(
+            address: controller.isLocatingLocation.value?
+            const SizedBox(
+              height: 8,
+              width: 8,
+              child: CircularProgressIndicator()) :TextUtils(
                     text: controller.address.value,
                     fontsize: 15,
                     fontWeight: FontWeight.normal,
@@ -144,7 +148,7 @@ class _DeliveryWidgetState extends State<DeliveryWidget> {
     required Widget icon,
   }) {
     return Container(
-      height: 125,
+      height: 130,
       width: double.infinity,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
