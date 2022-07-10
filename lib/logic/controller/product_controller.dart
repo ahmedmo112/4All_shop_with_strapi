@@ -8,11 +8,11 @@ import 'package:get_storage/get_storage.dart';
 import '../../models/product_models.dart';
 
 class ProductController extends GetxController{
-  RxList productList = <ProductData> [].obs;
+  RxList<ProductData> productList = <ProductData> [].obs;
   RxList favoriteList = <ProductData> [].obs;
   RxBool isLoading = true.obs;
 
-  RxList searchList = <ProductModel> [].obs;
+  RxList<ProductData> searchList = <ProductData> [].obs;
   TextEditingController searchTextController = TextEditingController();
   bool isWrittenAtSearchBar = false;
 
@@ -48,7 +48,7 @@ class ProductController extends GetxController{
   void addToFavoriteList(int productId)async{
 
     favoriteList.add(productList
-    .firstWhere((element) => element.attributes.uid == productId));
+    .firstWhere((element) => element.attributes!.uid == productId));
     await storage.write("favoritie", favoriteList);
   }
 
@@ -67,8 +67,8 @@ class ProductController extends GetxController{
 
   void addSearchToList(String searchName){
     searchList.value = productList.where((search) {
-      String title = search.title.toString().toLowerCase();
-      String price = search.price.toString().toLowerCase();
+      String title = search.attributes!.title.toString().toLowerCase();
+      String price = search.attributes!.price.toString().toLowerCase();
       return title.contains(searchName.toLowerCase()) || price.contains(searchName.toLowerCase()) ;
 
     }).toList();

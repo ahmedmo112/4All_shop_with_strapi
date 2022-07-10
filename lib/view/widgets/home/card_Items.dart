@@ -43,9 +43,9 @@ class CardItems extends StatelessWidget {
                       : controller.searchList.length,
                   itemBuilder: (BuildContext context, int index) {
                     if (controller.searchList.isEmpty) {
-                      return buildCardItems(controller.productList[index].attributes);
+                      return buildCardItems(controller.productList[index].attributes!);
                     } else {
-                      return buildCardItems(controller.searchList[index].attributes);
+                      return buildCardItems(controller.searchList[index].attributes!);
                     }
                   },
                 ),
