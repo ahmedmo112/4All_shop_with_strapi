@@ -143,7 +143,7 @@ class SignUpScreen extends StatelessWidget {
                                       if (controller.isChacked) {
                                         if (formKey.currentState!.validate()) {
                                           controller.createAccount(
-                                              "".trim(),
+                                              nameController.text,
                                               emailController.text.trim(),
                                               passwordController.text);
                                         }

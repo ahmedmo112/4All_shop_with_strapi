@@ -36,7 +36,12 @@ class _DeliveryWidgetState extends State<DeliveryWidget> {
             title: "From Store",
             name: "ForALL Shop",
             phone: "06973",
-            address: "17-Al Haram-Giza-Egypt",
+            address:
+            const TextUtils(
+                    text: "17-Al Haram-Giza-Egypt",
+                    fontsize: 15,
+                    fontWeight: FontWeight.normal,
+                    color: Colors.black),
             icon: Container()),
         const SizedBox(
           height: 10,
@@ -55,7 +60,11 @@ class _DeliveryWidgetState extends State<DeliveryWidget> {
             title: "Delivery",
             name: authController.displayUserName.value,
             phone: controller.phoneNumber.value,
-            address: controller.address.value,
+            address: controller.isLocatingLocation.value?const CircularProgressIndicator() :TextUtils(
+                    text: controller.address.value,
+                    fontsize: 15,
+                    fontWeight: FontWeight.normal,
+                    color: Colors.black),
             icon: InkWell(
               onTap: () {
                 Get.defaultDialog(
@@ -131,7 +140,7 @@ class _DeliveryWidgetState extends State<DeliveryWidget> {
     required String title,
     required String name,
     required String phone,
-    required String address,
+    required Widget address,
     required Widget icon,
   }) {
     return Container(
@@ -202,11 +211,7 @@ class _DeliveryWidgetState extends State<DeliveryWidget> {
                 const SizedBox(
                   height: 5,
                 ),
-                TextUtils(
-                    text: address,
-                    fontsize: 15,
-                    fontWeight: FontWeight.normal,
-                    color: Colors.black),
+                address
               ],
             ),
           )
