@@ -34,7 +34,11 @@ class MainScreen extends StatelessWidget {
                     child: const Icon(Icons.shopping_bag_outlined))),
             )
           ],
-          title: Text(controller.titles[controller.currentIndex.value].tr),
+          title:controller.currentIndex.value==0? SizedBox(
+                    width: 100,
+                    child: Image.asset("assets/images/logo.png"),
+                    )
+                    :Text(controller.titles[controller.currentIndex.value].tr),
           centerTitle: true,
         ),
         bottomNavigationBar: BottomNavigationBar(

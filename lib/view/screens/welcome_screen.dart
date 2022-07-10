@@ -31,14 +31,9 @@ class WelcomeScreen extends StatelessWidget {
                   const TextUtils(text: 'Welcome', fontsize: 35, fontWeight: FontWeight.bold),
                   const SizedBox(height: 20,),
 
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      TextUtils(text: '4ALL', fontsize: 35, fontWeight: FontWeight.bold,color: mainColor),
-                      SizedBox(width: 10,),
-                    TextUtils(text: 'Shop', fontsize: 35, fontWeight: FontWeight.bold,),
-                    ],
-                  ),
+                  SizedBox(
+                    width: 250,
+                    child: Image.asset("assets/images/logo.png",)),
                   const Spacer(),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
