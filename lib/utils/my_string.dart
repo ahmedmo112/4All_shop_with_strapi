@@ -3,10 +3,12 @@ String validationEmail =
 
 String validationName = r'^[a-z A-Z]+$';
 
-String baseUrl = 'https://fakestoreapi.com';
+// String baseUrl = 'https://fakestoreapi.com';
+String baseUrl = 'https://hidden-brook-94390.herokuapp.com/api';
 
 String english = "English \u{1F1FA}\u{1F1F8}";
 String arabic = "Arabic \u{1F1F8}\u{1F1E6}";
 
 String ar = 'ar';
 String en = 'en';
+

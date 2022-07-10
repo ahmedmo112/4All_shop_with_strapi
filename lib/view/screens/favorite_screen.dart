@@ -39,7 +39,7 @@ class FavoriteScreen extends StatelessWidget {
             return const SizedBox(height: 5,);
           },
           itemBuilder: (BuildContext context, int index) {
-            return buildFavoriteItem(context,controller.favoriteList[index]) ;
+            return buildFavoriteItem(context,controller.favoriteList[index].attributes) ;
           },
         );
         
@@ -49,7 +49,7 @@ class FavoriteScreen extends StatelessWidget {
         
   }
 
-  Widget buildFavoriteItem(context,ProductModel product) {
+  Widget buildFavoriteItem(context,Product product) {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: SizedBox(
@@ -102,7 +102,7 @@ class FavoriteScreen extends StatelessWidget {
             ),
             IconButton(
                 onPressed: () {
-                  controller.removeFromFavoriteList(product.id!);
+                  controller.removeFromFavoriteList(product.uid!);
                   
                 },
                 icon: const Icon(

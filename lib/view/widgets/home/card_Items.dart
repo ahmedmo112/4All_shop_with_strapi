@@ -43,9 +43,9 @@ class CardItems extends StatelessWidget {
                       : controller.searchList.length,
                   itemBuilder: (BuildContext context, int index) {
                     if (controller.searchList.isEmpty) {
-                      return buildCardItems(controller.productList[index]);
+                      return buildCardItems(controller.productList[index].attributes);
                     } else {
-                      return buildCardItems(controller.searchList[index]);
+                      return buildCardItems(controller.searchList[index].attributes);
                     }
                   },
                 ),
@@ -54,7 +54,7 @@ class CardItems extends StatelessWidget {
     });
   }
 
-  Widget buildCardItems(ProductModel product) {
+  Widget buildCardItems(Product product) {
     return Padding(
       padding: const EdgeInsets.all(5.0),
       child: InkWell(
@@ -82,11 +82,11 @@ class CardItems extends StatelessWidget {
                     children: [
                       IconButton(
                           onPressed: () {
-                            controller.isAtFavorite(product.id!)
-                                ? controller.removeFromFavoriteList(product.id!)
-                                : controller.addToFavoriteList(product.id!);
+                            controller.isAtFavorite(product.uid!)
+                                ? controller.removeFromFavoriteList(product.uid!)
+                                : controller.addToFavoriteList(product.uid!);
                           },
-                          icon: controller.isAtFavorite(product.id!)
+                          icon: controller.isAtFavorite(product.uid!)
                               ? const Icon(Icons.favorite,
                                   size: 21, color: Colors.red)
                               : Icon(Icons.favorite_outline,
@@ -135,7 +135,7 @@ class CardItems extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           TextUtils(
-                            text: product.rating!.rate.toString(),
+                            text: product.rate.toString(),
                             fontsize: 12,
                             fontWeight: FontWeight.normal,
                           ),

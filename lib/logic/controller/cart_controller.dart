@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 
 
 class CartController extends GetxController {
-  RxMap<ProductModel, int> cartMap = <ProductModel, int>{}.obs;
+  RxMap<Product, int> cartMap = <Product, int>{}.obs;
 
   double total = 0;
 
@@ -19,7 +19,7 @@ class CartController extends GetxController {
     super.onInit();
   }
 
-  void addProductToCart(ProductModel product) {
+  void addProductToCart(Product product) {
     if (!cartMap.containsKey(product)) {
       cartMap[product] = 1;
     } else {
@@ -38,7 +38,7 @@ class CartController extends GetxController {
     calcTotalPrice();
   }
 
-  void removeProductFromCart(ProductModel product) {
+  void removeProductFromCart(Product product) {
     if (cartMap.containsKey(product)) {
       if (cartMap[product] != 1) {
         int num = cartMap[product]! - 1;
@@ -51,7 +51,7 @@ class CartController extends GetxController {
     calcTotalPrice();
   }
 
-  void removeOneProduct(ProductModel product) {
+  void removeOneProduct(Product product) {
     cartMap.remove(product);
 
     calcTotalPrice();

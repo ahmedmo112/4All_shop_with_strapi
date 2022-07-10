@@ -12,7 +12,7 @@ import '../widgets/ProductDetails/product_info_widget.dart';
 class ProductDetailsScreen extends StatelessWidget {
   ProductDetailsScreen({Key? key, required this.product})
       : super(key: key);
-  final ProductModel product;
+  final Product product;
   final controller = Get.find<CartController>();
   @override
   Widget build(BuildContext context) {

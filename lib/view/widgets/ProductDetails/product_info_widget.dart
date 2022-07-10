@@ -8,7 +8,7 @@ import 'package:readmore/readmore.dart';
 class ProductInfo extends StatelessWidget {
   ProductInfo({Key? key, required this.product}) : super(key: key);
 
-  final ProductModel product;
+  final Product product;
   final controller = Get.find<ProductController>();
 
   @override
@@ -34,14 +34,14 @@ class ProductInfo extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        product.rating!.rate.toString(),
+                        product.rate.toString(),
                         style: const TextStyle(
                             fontSize: 12, fontWeight: FontWeight.normal),
                       ),
                       RatingBarIndicator(
                         itemSize: 20,
                         unratedColor: Colors.grey.shade300,
-                        rating: product.rating!.rate,
+                        rating: product.rate!,
                         itemBuilder: (context, index) => const Icon(
                           Icons.star,
                           color: Colors.amber,
@@ -53,14 +53,14 @@ class ProductInfo extends StatelessWidget {
               ),
               Obx(() => InkWell(
                   onTap: () {
-                    controller.isAtFavorite(product.id!)
-                        ? controller.removeFromFavoriteList(product.id!)
-                        : controller.addToFavoriteList(product.id!);
+                    controller.isAtFavorite(product.uid!)
+                        ? controller.removeFromFavoriteList(product.uid!)
+                        : controller.addToFavoriteList(product.uid!);
                   },
                   child: CircleAvatar(
                       backgroundColor: Colors.grey.shade100,
                       radius: 18,
-                      child: controller.isAtFavorite(product.id!)
+                      child: controller.isAtFavorite(product.uid!)
                           ? const Icon(Icons.favorite, color: Colors.red)
                           : const Icon(Icons.favorite_border_outlined,
                               color: Colors.black)))),

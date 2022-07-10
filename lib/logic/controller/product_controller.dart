@@ -8,8 +8,8 @@ import 'package:get_storage/get_storage.dart';
 import '../../models/product_models.dart';
 
 class ProductController extends GetxController{
-  RxList productList = <ProductModel> [].obs;
-  RxList favoriteList = <ProductModel> [].obs;
+  RxList productList = <ProductData> [].obs;
+  RxList favoriteList = <ProductData> [].obs;
   RxBool isLoading = true.obs;
 
   RxList searchList = <ProductModel> [].obs;
@@ -27,10 +27,10 @@ class ProductController extends GetxController{
   }
 
   void getProducts()async{
-    List<ProductModel> products = await ProductServices.getProducts();
+    List<ProductData>? products = await ProductServices.getProducts();
 
     try {
-      if (products.isNotEmpty) {
+      if (products!.isNotEmpty) {
         productList.addAll(products);
       }
     } finally {
@@ -39,30 +39,30 @@ class ProductController extends GetxController{
   }
 
   void readFavorite(){
-    List? list =  storage.read<List>("favorities");
+    List? list =  storage.read<List>("favoritie");
     if(list != null){
-     favoriteList =  list.map((element) => ProductModel.fromJson(element)).toList().obs;
+     favoriteList =  list.map((element) => ProductData.fromJson(element)).toList().obs;
     }
   }
 
   void addToFavoriteList(int productId)async{
 
     favoriteList.add(productList
-    .firstWhere((element) => element.id == productId));
-    await storage.write("favorities", favoriteList);
+    .firstWhere((element) => element.attributes.uid == productId));
+    await storage.write("favoritie", favoriteList);
   }
 
   void removeFromFavoriteList(int productId)async{
     for (var i = 0; i < favoriteList.length; i++) {
-      if (productId == favoriteList[i].id) {
+      if (productId == favoriteList[i].attributes.uid) {
         favoriteList.removeAt(i);
       }
     }
-    await storage.write("favorities", favoriteList);
+    await storage.write("favoritie", favoriteList);
   }
 
   bool isAtFavorite(int productId){
-    return favoriteList.any((element) => element.id == productId);
+    return favoriteList.any((element) => element.attributes.uid == productId);
   }
 
   void addSearchToList(String searchName){

@@ -45,14 +45,14 @@ class CategoryProducts extends StatelessWidget {
                             maxCrossAxisExtent: 230),
                     itemCount: controller.categoryProducts.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return buildCardItems(controller.categoryProducts[index]);
+                      return buildCardItems(controller.categoryProducts[index].attributes!);
                     },
                   ),
                 );
         }));
   }
 
-  Widget buildCardItems(ProductModel product) {
+  Widget buildCardItems(Product product) {
     return Padding(
       padding: const EdgeInsets.all(5.0),
       child: InkWell(
@@ -80,13 +80,13 @@ class CategoryProducts extends StatelessWidget {
                     children: [
                       IconButton(
                           onPressed: () {
-                            favoriteController.isAtFavorite(product.id!)
+                            favoriteController.isAtFavorite(product.uid!)
                                 ? favoriteController
-                                    .removeFromFavoriteList(product.id!)
+                                    .removeFromFavoriteList(product.uid!)
                                 : favoriteController
-                                    .addToFavoriteList(product.id!);
+                                    .addToFavoriteList(product.uid!);
                           },
-                          icon: favoriteController.isAtFavorite(product.id!)
+                          icon: favoriteController.isAtFavorite(product.uid!)
                               ? const Icon(Icons.favorite,
                                   size: 21, color: Colors.red)
                               : Icon(Icons.favorite_outline,
@@ -135,7 +135,7 @@ class CategoryProducts extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           TextUtils(
-                            text: product.rating!.rate.toString(),
+                            text: product.rate.toString(),
                             fontsize: 12,
                             fontWeight: FontWeight.normal,
                           ),

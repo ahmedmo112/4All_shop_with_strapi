@@ -1,19 +1,20 @@
 
+import 'package:fshop/models/category_model.dart';
 import 'package:fshop/models/product_models.dart';
 import 'package:fshop/services/category_services.dart';
 import 'package:get/get.dart';
 
 class CategoryController extends GetxController{
-  RxList categoryNameList = <String>[].obs;
+  RxList<String> categoryNameList = <String>[].obs;
   RxBool isCategoryLoading = false.obs;
   RxBool isCategoryProductsLoading = false.obs;
-  RxList categoryProducts = <ProductModel>[].obs;
+  RxList<ProductData> categoryProducts = <ProductData>[].obs;
 
   List catrgoryImages=[
-    "https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_.jpg",//electronics
-    "https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg", //jewelery
     "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg", //men's
     "https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg",//women's clothing
+    "https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_.jpg",//electronics
+    "https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg", //jewelery
   ];
 
   @override
@@ -23,11 +24,15 @@ class CategoryController extends GetxController{
   }
 
   void getCatrgoryData()async{
-    var categoryName = await CategoryServises.getCategories();
+    List<CategoryData> categoryName = await CategoryServises.getCategories();
+    String name;
     try {
       isCategoryLoading(true);
       if (categoryName.isNotEmpty) {
-        categoryNameList.addAll(categoryName);
+        categoryName.forEach((element) { 
+        name = element.attributes!.name!;
+        categoryNameList.add(name);
+        });
       }
     } finally {
       isCategoryLoading(false);
@@ -37,7 +42,7 @@ class CategoryController extends GetxController{
 
    getProductsOfCategory(String category)async{
     isCategoryProductsLoading(true);
-    var productsList = await CategoryProductServises.getCategoryProduct(category);
+    List<ProductData> productsList = await CategoryProductServises.getCategoryProduct(category);
     try {
       if (productsList.isNotEmpty) {
         categoryProducts.value = productsList;

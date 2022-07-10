@@ -50,7 +50,7 @@ class CartItemsWidget extends StatelessWidget {
     );
   }
 
-  Widget buildCartItem(context, ProductModel product, int count) => Padding(
+  Widget buildCartItem(context, Product product, int count) => Padding(
         padding: const EdgeInsets.all(10.0),
         child: SizedBox(
           width: double.infinity,
